@@ -49,6 +49,10 @@ export ACK_COLOR_MATCH='red'
 # Aliases
 function mkcd() { mkdir -p $1 && cd $1 }
 function cdf() { cd *$1*/ } # stolen from @topfunky
+# fd alias for linux distributions   https://github.com/sharkdp/fd#on-debian
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    alias fd='fdfind'
+fi
 
 # Activate the closest virtualenv by looking in parent directories.
 activate_virtualenv() {

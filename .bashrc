@@ -23,6 +23,11 @@ export HISTSIZE=10000
 # Append to the history file when exiting instead of overwriting it
 shopt -s histappend
 
+# fd alias for linux distributions   https://github.com/sharkdp/fd#on-debian
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    alias fd='fdfind'
+fi
+
 # Git prompt components
 function minutes_since_last_commit {
     now=`date +%s`
