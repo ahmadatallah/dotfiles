@@ -49,7 +49,12 @@ export ACK_COLOR_MATCH='red'
 # Aliases
 function mkcd() { mkdir -p $1 && cd $1 }
 function cdf() { cd *$1*/ } # stolen from @topfunky
-# fd alias for linux distributions   https://github.com/sharkdp/fd#on-debian
+alias zshconfig="vi ~/.zshrc"
+# alias ohmyzsh="vi ~/.oh-my-zsh"
+# alias sl="ls"
+# alias hc="vi $HOME/.hyper.js"
+
+# fd alias for linux distributions https://github.com/sharkdp/fd#on-debian
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias fd='fdfind'
 fi
@@ -77,10 +82,10 @@ python_module_dir () {
 #
 #   $ ls .tmux.conf
 #   ls: .tmux.conf: No such file or directory
-#
+
 #   $ ls `up .tmux.conf`
-#   /Users/grb/.tmux.conf
-#
+#   $HOME/.tmux.conf
+
 #   $ cat `up .tmux.conf`
 #   set -g default-terminal "screen-256color"
 #
@@ -147,8 +152,17 @@ bindkey "^S" "insert-selecta-path-in-command-line"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/gem_home/gem_home.sh
-
 export PATH="/usr/local/opt/node@12/bin:$PATH"
+
+# oh-my-zsh
+# export ZSH="$HOME/.oh-my-zsh"
+
+# nvm
+export PATH="$HOME/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export PATH="$HOME/.yarn/bin:$PATH"
+
+[ -n "$TMUX" ] && export TERM="xterm"
+
