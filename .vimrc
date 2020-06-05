@@ -638,7 +638,7 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
 endfunction
 
 function! SelectaFile(path, glob, command)
-  call SelectaCommand("fd -t f . " . a:path, "", a:command)
+  call SelectaCommand("fdfind -t f . " . a:path, "", a:command)
 endfunction
 
 nnoremap <leader>f :call SelectaFile(".", "*", ":edit")<cr>
