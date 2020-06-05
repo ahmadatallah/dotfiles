@@ -1,6 +1,6 @@
 [user]
-    name = Gary Bernhardt
-    email = gary.bernhardt@gmail.com
+    email = ahmad.atallah@yandex.com
+    name = ahmadatallah
 [core]
     pager = diff-so-fancy | less --tabs=4 -RFX
 [diff]
