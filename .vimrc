@@ -1,5 +1,6 @@
 " This is Gary Bernhardt's .vimrc file
 " vim:set ts=2 sts=2 sw=2 expandtab:
+set t_Co=256
 
 " remove all existing autocmds
 autocmd!
@@ -11,7 +12,7 @@ Plug 'slim-template/vim-slim'
 " Plug 'zivyangll/git-blame.vim'
 
 " JavaScript
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 
 " TypeScript highlighting/indent
@@ -19,6 +20,8 @@ Plug 'leafgarland/typescript-vim'
 " Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'peitalin/vim-jsx-typescript'
 " Plug 'ianks/vim-tsx'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " TypeScript semantic support
 Plug 'Quramy/tsuquyomi'
@@ -218,17 +221,19 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM-ALE CONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_linters = {'javascript': [], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint']}
-let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
+let g:ale_linters = {'javascript': ['eslint'], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint']}
+let g:ale_fixers = {'javascript': ['prettier'], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
-let g:ale_set_quickfix = 0
+let g:ale_set_quickfix = 1
 let g:ale_set_loclist = 0
 let g:ale_javascript_eslint_executable = 'eslint --cache'
 nnoremap gj :ALENextWrap<cr>
 nnoremap gk :ALEPreviousWrap<cr>
 nnoremap g1 :ALEFirst<cr>
+nnoremap gf :ALEFix<cr>
+
 " This mapping will kill all ALE-related processes (including tsserver). It's
 " necessary when those processes get confused. E.g., tsserver will sometimes
 " show type errors that don't actually exist. I don't know exactly why that
@@ -261,6 +266,9 @@ vnoremap <leader>ib :!align<cr>
 " Close all other splits
 nnoremap <leader>o :only<cr>
 
+" Swap lines
+nnoremap <C-j> <Up>ddp<Up>
+nnoremap <C-k> ddp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
