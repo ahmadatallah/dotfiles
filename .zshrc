@@ -1,22 +1,24 @@
-# Set custom prompt
-setopt PROMPT_SUBST
-autoload -U promptinit
-promptinit
-prompt grb
-
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Initialize completion
-autoload -U compinit
-compinit -D
+# autoload -U compinit
+# compinit -D
 
 # Add paths
 export PATH=/usr/local/sbin:/usr/local/bin:${PATH}
 export PATH="$HOME/bin:$PATH"
-#export PATH="./node_modules/.bin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
 
 # Colorize terminal
 alias ls='ls -G'
 alias ll='ls -lG'
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
+
+
+# GITHUB_TOKEN
+# Add personal token when needed
+
 
 # Nicer history
 export HISTSIZE=100000
@@ -49,9 +51,8 @@ export ACK_COLOR_MATCH='red'
 function mkcd() { mkdir -p $1 && cd $1 }
 function cdf() { cd *$1*/ } # stolen from @topfunky
 alias zshconfig="vi ~/.zshrc"
-# alias ohmyzsh="vi ~/.oh-my-zsh"
-# alias sl="ls"
-# alias hc="vi $HOME/.hyper.js"
+alias ohmyzsh="vi ~/.oh-my-zsh"
+alias sl="ls"
 
 # fd alias for linux distributions https://github.com/sharkdp/fd#on-debian
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -149,19 +150,20 @@ zle -N insert-selecta-path-in-command-line
 # Bind the key to the newly created widget
 bindkey "^S" "insert-selecta-path-in-command-line"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="/usr/local/opt/node@12/bin:$PATH"
-
-# oh-my-zsh
-# export ZSH="$HOME/.oh-my-zsh"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="simple"
 
 # nvm
 export PATH="$HOME/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 export PATH="$HOME/.yarn/bin:$PATH"
+export TERM="xterm"
 
-[ -n "$TMUX" ] && export TERM="xterm"
-
+# oh-my-zsh
+plugins=(git zsh-autosuggestions zsh-autocomplete tmux)
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
